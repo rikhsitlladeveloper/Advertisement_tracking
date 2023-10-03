@@ -8,6 +8,7 @@ import requests
 from requests.auth import HTTPBasicAuth
 
 url = "http://13.233.149.171/api/v1/record/"  #Server api url
+
 username = "admin"
 password = "admin1771"
 
@@ -73,13 +74,15 @@ try:
              
         elapsed = time.time() - det_last_time
         if (elapsed > 3 and data_send == False):
+            video_writer.release()
+            print("Video released")
             if (int(detected_time) >= 5):
                 data = { 
                         "is_active": True,
                         "duration": int(detected_time),
                         "channel_name": channel_name,
                         "company_name": "artel",
-                        "video_url": "/root/Project/advertising-tracking/videos/"+video_url,
+                        "video_url": "/home/graph/Project/Advertisement_tracking/"+video_url,
                         "data": current_datetime.strftime("%Y-%m-%d"),
                         "time": current_datetime.strftime("%H:%M:%S")
                     }
@@ -92,13 +95,18 @@ try:
                     print("Failed to send data")
                     print("Response:", response.text)
 
+            else:
+                if(os.path.exists(video_filename)):
+                    os.remove(video_filename)
+                    print("Video has been deleted")
             detected_time = 0
             data_send = True
-            video_writer.release()
-        
+           
+            
+
         last_time = time.time()
 
-        # cv2.imshow(f'{channel_name}', color_image)
+        cv2.imshow(f'{channel_name}', color_image)
         
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
