@@ -22,6 +22,8 @@ model.cuda()  # GPU
 video_writer = False
 channel_name = "my5_tv"
 output_folder = 'videos'
+folder_name = "Advertisement_tracking"
+folder_path = os.path.join(os.getcwd(), folder_name)
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
 
@@ -106,7 +108,7 @@ try:
 
         last_time = time.time()
 
-        cv2.imshow(f'{channel_name}', color_image)
+        # cv2.imshow(f'{channel_name}', color_image)
         
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
