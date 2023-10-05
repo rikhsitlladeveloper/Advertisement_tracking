@@ -1,0 +1,9 @@
+version: '3'
+services:
+  your-app:
+    image: reklama
+    build: .
+    volumes:
+      - /home/tilla/Projects/Advertisement_tracking:/Projects/Advertisement_tracking
+    working_dir: /Projects/Advertisement_tracking
+    command: python Sevimli_tv_Artel_reklama_detection.py
