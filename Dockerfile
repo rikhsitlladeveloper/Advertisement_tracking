@@ -29,9 +29,12 @@ RUN apt-get install -y htop
 
 RUN git clone -b main https://github.com/rikhsitlladeveloper/Advertisement_tracking.git
 
-
-
 WORKDIR /Projects/Advertisement_tracking
+ 
+RUN apt-get update && apt-get install -y tzdata
+ENV TZ=Asia/Tashkent
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 
 # Set the entry point command to run your Python script (replace "your_script.py" with your script's name)
-CMD ["python3", "Sevimli_tv_Artel_reklama_detection.py"]
+# CMD ["python3", "Sevimli_tv_Artel_reklama_detection.py"]

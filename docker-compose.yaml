@@ -1,9 +1,81 @@
 version: '3'
 services:
-  your-app:
+  Sport_tv:
     image: reklama
     build: .
     volumes:
-      - /home/tilla/Projects/Advertisement_tracking:/Projects/Advertisement_tracking
-    working_dir: /Projects/Advertisement_tracking
-    command: python Sevimli_tv_Artel_reklama_detection.py
+      - /home/graph/Project/Advertisement_tracking/videos/Sport_tv:/Projects/Advertisement_tracking/videos
+    command: /bin/sh -c 'python3 Sport_Artel_reklama_detection.py'
+    environment:
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+  
+  Kinoteatr_tv:
+    image: reklama
+    build: .
+    volumes:
+      - /home/graph/Project/Advertisement_tracking/videos/Kinoteatr:/Projects/Advertisement_tracking/videos
+    command: /bin/sh -c 'python3 Kinoteatr_Artel_reklama_detection.py'
+    environment:
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  Sevimli_tv:
+    image: reklama
+    build: .
+    volumes:
+      - /home/graph/Project/Advertisement_tracking/videos/Sevimli_tv:/Projects/Advertisement_tracking/videos
+    command: /bin/sh -c 'python3 Sevimli_tv_Artel_reklama_detection.py'
+    environment:
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  My5_tv:
+    image: reklama
+    build: .
+    volumes:
+      - /home/graph/Project/Advertisement_tracking/videos/My5_tv:/Projects/Advertisement_tracking/videos
+    command: /bin/sh -c 'python3 My_5_tv_Artel_reklama_detection.py'
+    environment:
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+  
+  Zor_tv:
+    image: reklama
+    build: .
+    volumes:
+      - /home/graph/Project/Advertisement_tracking/videos/Zor_tv:/Projects/Advertisement_tracking/videos
+    command: /bin/sh -c 'python3 Zor_tv_Artel_reklama_detection.py'
+    environment:
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
