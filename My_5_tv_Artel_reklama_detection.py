@@ -52,6 +52,8 @@ try:
         current_datetime = datetime.datetime.now()
         start_time = time.time()
         ret, color_frame = cap.read()
+        if not ret:
+            continue
         color_frame = cv2.resize(color_frame ,(frame_width, frame_height))
         # Convert images to numpy arrays
         color_image = np.asanyarray(color_frame)
